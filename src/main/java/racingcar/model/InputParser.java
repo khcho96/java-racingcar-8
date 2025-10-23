@@ -8,7 +8,7 @@ public class InputParser {
     private String input;
 
     private InputParser(String input) {
-        this.input = input;
+        this.input = input.strip();
     }
 
     public static InputParser from(String input) {
