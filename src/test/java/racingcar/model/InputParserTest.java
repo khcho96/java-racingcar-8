@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -33,6 +32,19 @@ public class InputParserTest {
     void roundInputIsBlankTest(String input) {
         // given
         String expectedMessage = "[ERROR] 유효하지 않은 입력값입니다.";
+
+        // when then
+        assertThatThrownBy(()->InputParser.roundInputParserFrom(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
+
+    @DisplayName("시도할 횟수 입력값이 자연수가 아니면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "a"})
+    void roundInputIsNumberTest(String input) {
+        // given
+        String expectedMessage = "[ERROR] 시도할 횟수는 자연수만 가능합니다.";
 
         // when then
         assertThatThrownBy(()->InputParser.roundInputParserFrom(input))
