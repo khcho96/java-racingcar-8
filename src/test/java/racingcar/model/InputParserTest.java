@@ -66,10 +66,9 @@ public class InputParserTest {
                 .hasMessageContaining(expectedMessage);
     }
 
-
     @DisplayName("자동차 이름 쉼표로 분리")
     @ParameterizedTest
-    @MethodSource("argumentProvider")
+    @MethodSource("carNamesInputProvider")
     void getSplitCarNamesTest(String input, String[] splitCarNames) {
         // given
         InputParser inputParser = InputParser.carNamesInputParserFrom(input);
@@ -81,11 +80,24 @@ public class InputParserTest {
         assertThat(splitCarNameList).containsExactly(splitCarNames);
     }
 
-    static Stream<Arguments> argumentProvider() {
+    static Stream<Arguments> carNamesInputProvider() {
         return Stream.of(
                 Arguments.of("a,b,c", new String[]{"a", "b", "c"}),
                 Arguments.of("a,,b,c", new String[]{"a", "", "b", "c"}),
                 Arguments.of(",a,b,c,", new String[]{"", "a", "b", "c"})
         );
+    }
+
+    @DisplayName("시도할 횟수 양수로 변환")
+    @Test
+    void getRoundTest() {
+        // given
+        InputParser inputParser = InputParser.roundInputParserFrom("1");
+
+        // when
+        Integer round = inputParser.getRound();
+
+        // then
+        assertThat(round).isEqualTo(1);
     }
 }
