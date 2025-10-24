@@ -1,6 +1,10 @@
 package racingcar.util;
 
+import static racingcar.constant.core.Constant.MAX_ROUND;
+import static racingcar.constant.core.Constant.NUMBER_PATTERN;
+
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Validator {
 
@@ -26,6 +30,19 @@ public class Validator {
 
         if (preLength != distinctLength) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복을 허용하지 않습니다.");
+        }
+    }
+
+    public static void validateNumber(String input) {
+        if (!input.strip().matches(NUMBER_PATTERN)) {
+            throw new IllegalArgumentException("[ERROR] 시도할 횟수는 자연수만 가능합니다.");
+        }
+    }
+
+    public static void validateExceedMax(String input) {
+        int round = Converter.convertStringToNumber(input);
+        if (round > MAX_ROUND) {
+            throw  new IllegalArgumentException("[ERROR] 시도할 횟수는 10,000 이하의 값만 가능합니다.");
         }
     }
 }
