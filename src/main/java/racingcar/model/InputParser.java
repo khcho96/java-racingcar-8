@@ -20,8 +20,10 @@ public class InputParser {
         return getInputParser(input);
     }
 
-    public static InputParser RoundInputParserFrom(String input) {
+    public static InputParser roundInputParserFrom(String input) {
         Validator.validateNullOrBlank(input);
+        Validator.validateNumber(input);
+        Validator.validateExceedMax(input);
         return getInputParser(input);
     }
 
