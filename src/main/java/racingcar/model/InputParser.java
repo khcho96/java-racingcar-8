@@ -1,5 +1,9 @@
 package racingcar.model;
 
+import static racingcar.constant.core.Constant.DELIMITER;
+
+import java.util.List;
+import java.util.stream.Stream;
 import racingcar.util.Validator;
 
 public class InputParser {
@@ -14,5 +18,10 @@ public class InputParser {
     public static InputParser from(String input) {
         Validator.validateNullOrBlank(input);
         return new InputParser(input);
+    }
+
+    public List<String> getSplitCarNames() {
+        return Stream.of(input.split(DELIMITER))
+                .toList();
     }
 }
