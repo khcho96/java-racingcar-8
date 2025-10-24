@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,15 +14,28 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputParserTest {
 
-    @DisplayName("입력값이 공백이면 예외 발생")
+    @DisplayName("자동차 이름 입력값이 공백이면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"", "  "})
-    void InputValueIsBlankTest(String input) {
+    void carNamesInputIsBlankTest(String input) {
         // given
-        String expectedMessage = "유효하지 않은 값입니다.";
+        String expectedMessage = "[ERROR] 유효하지 않은 입력값입니다.";
 
         // when then
-        assertThatThrownBy(()->InputParser.from(input))
+        assertThatThrownBy(()->InputParser.carNamesInputParserFrom(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
+
+    @DisplayName("시도할 횟수 입력값이 공백이면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "  "})
+    void roundInputIsBlankTest(String input) {
+        // given
+        String expectedMessage = "[ERROR] 유효하지 않은 입력값입니다.";
+
+        // when then
+        assertThatThrownBy(()->InputParser.roundInputParserFrom(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedMessage);
     }
@@ -31,7 +45,7 @@ public class InputParserTest {
     @MethodSource("argumentProvider")
     void getSplitCarNamesTest(String input, String[] splitCarNames) {
         // given
-        InputParser inputParser = InputParser.from(input);
+        InputParser inputParser = InputParser.carNamesInputParserFrom(input);
 
         // when
         List<String> splitCarNameList = inputParser.getSplitCarNames();
