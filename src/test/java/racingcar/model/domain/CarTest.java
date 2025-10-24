@@ -21,4 +21,17 @@ public class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedMessage);
     }
+
+    @DisplayName("자동차 이름 길이 검증")
+    @Test
+    void validateCarNameLengthTest() {
+        // given
+        String carName = "jacobs";
+        String expectedMessage = "[ERROR] 자동차 이름의 길이는 최대 5입니다.";
+
+        // when then
+        assertThatThrownBy(() -> new Car(carName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
 }
