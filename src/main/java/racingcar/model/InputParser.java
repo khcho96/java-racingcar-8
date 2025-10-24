@@ -15,9 +15,24 @@ public class InputParser {
         this.input = input.strip();
     }
 
-    public static InputParser from(String input) {
+    public static InputParser carNamesInputParserFrom(String input) {
         Validator.validateNullOrBlank(input);
-        return new InputParser(input);
+        return getInputParser(input);
+    }
+
+    public static InputParser RoundInputParserFrom(String input) {
+        Validator.validateNullOrBlank(input);
+        return getInputParser(input);
+    }
+
+    private static InputParser getInputParser(String input) {
+        if (inputParserObj != null) {
+            inputParserObj.input = input;
+            return inputParserObj;
+        }
+
+        inputParserObj = new InputParser(input);
+        return inputParserObj;
     }
 
     public List<String> getSplitCarNames() {
