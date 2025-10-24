@@ -20,4 +20,10 @@ public class RaceController {
         Cars finalCars = runRaceEveryRound(cars, round);
         showWinners(finalCars);
     }
+    
+    private Cars getCars() {
+        OutputView.printCarNamesRequest();
+        String carNames = InputView.readUserInput();
+        return service.generateCars(carNames);
+    }
 }
