@@ -4,7 +4,6 @@ import static racingcar.constant.core.Constant.MAX_ROUND;
 import static racingcar.constant.core.Constant.NUMBER_PATTERN;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class Validator {
 
@@ -34,7 +33,7 @@ public class Validator {
     }
 
     public static void validateNumber(String input) {
-        if (!input.strip().matches(NUMBER_PATTERN)) {
+        if (!input.strip().matches(NUMBER_PATTERN) || input.strip().equals("0")) {
             throw new IllegalArgumentException("[ERROR] 시도할 횟수는 자연수만 가능합니다.");
         }
     }
