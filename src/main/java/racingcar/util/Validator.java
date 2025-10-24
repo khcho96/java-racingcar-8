@@ -1,7 +1,7 @@
 package racingcar.util;
 
-import static racingcar.constant.core.Constant.MAX_ROUND;
-import static racingcar.constant.core.Constant.NUMBER_PATTERN;
+import static racingcar.constant.Constant.MAX_ROUND;
+import static racingcar.constant.Constant.NUMBER_PATTERN;
 
 import java.util.List;
 
