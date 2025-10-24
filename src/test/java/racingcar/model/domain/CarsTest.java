@@ -21,4 +21,17 @@ public class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedMessage);
     }
+
+    @DisplayName("자동차 리스트 생성")
+    @Test
+    void CarsFromTest() {
+        // given
+        List<String> carNames = List.of("a", "b", "c");
+
+        // when
+        Cars cars = Cars.CarsFrom(carNames);
+
+        // then
+        assertThat(cars).isInstanceOf(Cars.class);
+    }
 }
