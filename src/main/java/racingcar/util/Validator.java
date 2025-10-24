@@ -1,5 +1,6 @@
 package racingcar.util;
 
+import static racingcar.constant.Constant.MAX_CAR_NAME_LENGTH;
 import static racingcar.constant.Constant.MAX_ROUND;
 import static racingcar.constant.Constant.NUMBER_PATTERN;
 
@@ -14,7 +15,7 @@ public class Validator {
     }
 
     public static void validateCarNameLength(String CarName) {
-        if (CarName.strip().length() > 5) {
+        if (CarName.strip().length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 최대 5입니다.");
         }
     }
