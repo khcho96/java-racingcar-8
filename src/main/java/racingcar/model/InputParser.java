@@ -1,9 +1,10 @@
 package racingcar.model;
 
-import static racingcar.constant.core.Constant.DELIMITER;
+import static racingcar.constant.Constant.DELIMITER;
 
 import java.util.List;
 import java.util.stream.Stream;
+import racingcar.util.Converter;
 import racingcar.util.Validator;
 
 public class InputParser {
@@ -40,5 +41,9 @@ public class InputParser {
     public List<String> getSplitCarNames() {
         return Stream.of(input.split(DELIMITER))
                 .toList();
+    }
+
+    public Integer getRound() {
+        return Converter.convertStringToNumber(input);
     }
 }
