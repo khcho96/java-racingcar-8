@@ -30,4 +30,19 @@ public class Cars {
 
         return this;
     }
+
+    public List<Car> getWinningCars() {
+        Integer maxStep = getMaxStep();
+        return cars.stream()
+                .filter(car -> car.isWinner(maxStep))
+                .toList();
+    }
+
+    public Integer getMaxStep() {
+        Integer maxStep = 0;
+        for (Car car : cars) {
+            maxStep = car.getStepGreaterThan(maxStep);
+        }
+        return maxStep;
+    }
 }
