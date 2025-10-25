@@ -19,6 +19,10 @@ public class Cars {
         return new Cars(cars);
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public Cars conductRound() {
         for (Car car : cars) {
             car.moveOrStay();
