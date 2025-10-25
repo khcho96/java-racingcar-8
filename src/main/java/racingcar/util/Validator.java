@@ -5,7 +5,7 @@ import static racingcar.constant.Constant.MAX_ROUND;
 import static racingcar.constant.Constant.NUMBER_PATTERN;
 import static racingcar.constant.ErrorMessage.CAR_NAME_LENGTH_ERROR;
 import static racingcar.constant.ErrorMessage.CAR_NAME_UNIQUE_ERROR;
-import static racingcar.constant.ErrorMessage.INVALID_ERROR;
+import static racingcar.constant.ErrorMessage.INVALID_INPUT_ERROR;
 import static racingcar.constant.ErrorMessage.INVALID_ROUND_ERROR;
 import static racingcar.constant.ErrorMessage.ROUND_RANGE_ERROR;
 
@@ -15,7 +15,7 @@ public class Validator {
 
     public static void validateNullOrBlank(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException(INVALID_ERROR.getErrorMessage());
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR.getErrorMessage());
         }
     }
 
