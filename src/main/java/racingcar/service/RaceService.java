@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.List;
 import racingcar.model.InputParser;
 import racingcar.model.domain.Cars;
+import racingcar.model.domain.WinningCars;
 
 public class RaceService {
     public Cars generateCars(String carNames) {
@@ -18,5 +19,9 @@ public class RaceService {
 
     public Cars runRace(Cars cars) {
         return cars.conductRound();
+    }
+
+    public WinningCars decideWinners(Cars cars) {
+        return WinningCars.winningCarsFrom(cars);
     }
 }
