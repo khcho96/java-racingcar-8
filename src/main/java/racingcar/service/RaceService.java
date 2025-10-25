@@ -15,4 +15,8 @@ public class RaceService {
         InputParser inputParser = InputParser.roundInputParserFrom(round);
         return inputParser.getRound();
     }
+
+    public Cars runRace(Cars cars) {
+        return cars.conductRound();
+    }
 }
