@@ -28,4 +28,8 @@ public class Car {
     private Integer generateRandomNumber() {
         return Randoms.pickNumberInRange(0, 9);
     }
+
+    public String getCurrentRace(String step) {
+        return name + " : " + step.repeat(this.step);
+    }
 }
