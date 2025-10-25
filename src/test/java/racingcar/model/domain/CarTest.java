@@ -1,6 +1,8 @@
 package racingcar.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static racingcar.constant.ErrorMessage.CAR_NAME_LENGTH_ERROR;
+import static racingcar.constant.ErrorMessage.INVALID_INPUT_ERROR;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,13 +15,9 @@ public class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     void validateCarNameNBlankTest(String carName) {
-        // given
-        String expectedMessage = "[ERROR] 유효하지 않은 입력값입니다.";
-
-        // when then
         assertThatThrownBy(() -> new Car(carName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(INVALID_INPUT_ERROR.getErrorMessage());
     }
 
     @DisplayName("자동차 이름 길이 검증")
@@ -27,11 +25,10 @@ public class CarTest {
     void validateCarNameLengthTest() {
         // given
         String carName = "jacobs";
-        String expectedMessage = "[ERROR] 자동차 이름의 길이는 최대 5입니다.";
 
         // when then
         assertThatThrownBy(() -> new Car(carName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(CAR_NAME_LENGTH_ERROR.getErrorMessage());
     }
 }
