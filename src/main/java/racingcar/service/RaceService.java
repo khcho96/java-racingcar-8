@@ -10,4 +10,9 @@ public class RaceService {
         List<String> splitCarNames = inputParser.getSplitCarNames();
         return Cars.CarsFrom(splitCarNames);
     }
+
+    public Integer generateRound(String round) {
+        InputParser inputParser = InputParser.roundInputParserFrom(round);
+        return inputParser.getRound();
+    }
 }
