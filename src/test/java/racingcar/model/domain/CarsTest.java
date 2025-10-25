@@ -1,6 +1,7 @@
 package racingcar.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static racingcar.constant.ErrorMessage.CAR_NAME_UNIQUE_ERROR;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -14,12 +15,11 @@ public class CarsTest {
     void validateUniqueCarNameTest() {
         // given
         List<String> carNames = List.of("a", "b", "a");
-        String expectedMessage = "[ERROR] 자동차 이름은 중복을 허용하지 않습니다.";
 
         // when then
         Assertions.assertThatThrownBy(() -> Cars.CarsFrom(carNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(CAR_NAME_UNIQUE_ERROR.getErrorMessage());
     }
 
     @DisplayName("자동차 리스트 생성")
