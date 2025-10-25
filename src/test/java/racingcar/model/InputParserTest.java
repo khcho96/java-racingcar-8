@@ -2,6 +2,9 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static racingcar.constant.ErrorMessage.INVALID_INPUT_ERROR;
+import static racingcar.constant.ErrorMessage.INVALID_ROUND_ERROR;
+import static racingcar.constant.ErrorMessage.ROUND_RANGE_ERROR;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,39 +21,27 @@ public class InputParserTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "  "})
     void carNamesInputIsBlankTest(String input) {
-        // given
-        String expectedMessage = "[ERROR] 유효하지 않은 입력값입니다.";
-
-        // when then
         assertThatThrownBy(()->InputParser.carNamesInputParserFrom(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(INVALID_INPUT_ERROR.getErrorMessage());
     }
 
     @DisplayName("시도할 횟수 입력값이 공백이면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"", "  "})
     void roundInputIsBlankTest(String input) {
-        // given
-        String expectedMessage = "[ERROR] 유효하지 않은 입력값입니다.";
-
-        // when then
         assertThatThrownBy(()->InputParser.roundInputParserFrom(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(INVALID_INPUT_ERROR.getErrorMessage());
     }
 
     @DisplayName("시도할 횟수 입력값이 자연수가 아니면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"-1", "0", "a"})
     void roundInputIsNumberTest(String input) {
-        // given
-        String expectedMessage = "[ERROR] 시도할 횟수는 자연수만 가능합니다.";
-
-        // when then
         assertThatThrownBy(()->InputParser.roundInputParserFrom(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(INVALID_ROUND_ERROR.getErrorMessage());
     }
 
     @DisplayName("시도할 횟수 입력값이 최댓값을 초과하면 예외 발생")
@@ -58,12 +49,11 @@ public class InputParserTest {
     void roundInputExceedMaxTest() {
         // given
         String input = "10001";
-        String expectedMessage = "[ERROR] 시도할 횟수는 10,000 이하의 값만 가능합니다.";
 
         // when then
         assertThatThrownBy(()->InputParser.roundInputParserFrom(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expectedMessage);
+                .hasMessageContaining(ROUND_RANGE_ERROR.getErrorMessage());
     }
 
     @DisplayName("자동차 이름 쉼표로 분리")
