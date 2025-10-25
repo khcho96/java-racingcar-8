@@ -32,4 +32,16 @@ public class RaceController {
         String round = InputView.readUserInput();
         return service.generateRound(round);
     }
+
+    private Cars runRaceEveryRound(Cars cars, Integer round) {
+        OutputView.printMessageBeforeRace();
+        Cars prevRoundCars = cars;
+        Cars nextRoundCars = cars;
+        for (int i = 0; i < round; i++) {
+            nextRoundCars = service.runRace(prevRoundCars);
+            OutputView.printRace(nextRoundCars);
+            prevRoundCars = nextRoundCars;
+        }
+        return nextRoundCars;
+    }
 }
