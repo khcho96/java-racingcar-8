@@ -18,4 +18,12 @@ public class Cars {
                 .toList();
         return new Cars(cars);
     }
+
+    public Cars conductRound() {
+        for (Car car : cars) {
+            car.moveOrStay();
+        }
+
+        return this;
+    }
 }
