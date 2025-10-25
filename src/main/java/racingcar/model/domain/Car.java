@@ -32,4 +32,19 @@ public class Car {
     public String getCurrentRace(String step) {
         return name + " : " + step.repeat(this.step);
     }
+
+    public Integer getStepGreaterThan(Integer step) {
+        if (this.step >= step) {
+            return this.step;
+        }
+        return step;
+    }
+
+    public boolean isWinner(Integer maxStep) {
+        return this.step == maxStep;
+    }
+
+    public void addTo(List<String> winnerList) {
+        winnerList.add(name);
+    }
 }
