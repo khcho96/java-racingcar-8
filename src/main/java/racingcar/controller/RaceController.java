@@ -45,7 +45,7 @@ public class RaceController {
         return nextRoundCars;
     }
 
-    public void showWinners(Cars cars) {
+    private void showWinners(Cars cars) {
         WinningCars winningCars = service.decideWinners(cars);
         OutputView.printWinners(winningCars);
     }
