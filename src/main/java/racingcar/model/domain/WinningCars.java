@@ -9,7 +9,7 @@ public class WinningCars {
     private final List<Car> winningCars;
 
     private WinningCars(List<Car> winningCars) {
-        this.winningCars = winningCars;
+        this.winningCars = List.copyOf(winningCars);
     }
 
     public static WinningCars winningCarsFrom(Cars cars) {
