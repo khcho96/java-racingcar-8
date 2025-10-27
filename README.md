@@ -159,4 +159,54 @@
   - [x] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
 
 ## 📝 구현 코드 명세
-(구현 완료 후 작성 예정)
+| Class                     | Field&Method                                                 | Role(Responsibility)                                    |
+|---------------------------|--------------------------------------------------------------|---------------------------------------------------------|
+| controller.RaceController | public void run()                                            | 컨트롤러를 실행                                                |
+|                           | private Cars getCars()                                       | 자동차이름을 입력받고 자동차 리스트를 반환                                 |
+|                           | private Integer getRound(Cars cars)                          | 시도할 횟수를 입력받고 양수로 변환한 값을 반환                              |
+|                           | private Cars runRaceEveryRound(Cars cars, Integer round)     | 매 라운드 경주를 실행하고 그 결과를 반환 후 출력                            |
+|                           | private void showWinners(Cars cars)                          | 우승자를 선정해 출력                                             |
+| model.domain.Car          | private final String name                                    | 자동차의 이름                                                 |
+|                           | private int step                                             | 자동차가 전진한 거리                                             |
+|                           | public void moveOrStay()                                     | 랜덤 숫자를 사용해 전진할지 결정                                      |
+|                           | private void move()                                          | 한칸 앞으로 전진                                               |
+|                           | private Integer generateRandomNumber()                       | 랜덤 숫자를 반환                                               |
+|                           | public String getCurrentRace(String step)                    | 각 자동차의 한 라운드 경주 결과를 반환                                  |
+|                           | public Integer getStepGreaterThan(Integer step)              | 인자로 받은 값보다 큰 step을 가졌으면 그 값을 반환(우승자 선정시 최댓값을 알기 위한 메서드) |
+|                           | public boolean isWinner(Integer maxStep)                     | 우승자인지 확인                                                |
+|                           | public void addTo(List<String> winnerList)                   | 우승자 리스트에 이름을 전달                                         |
+| model.domain.Cars         | private final List<Car> cars                                 | 자동차 리스트                                                 |
+|                           | public static Cars CarsFrom(List<String> carNames)           | 자동차 리스트를 생성하는 정적 팩토리 메서드                                |
+|                           | public List<Car> getCars()                                   | 출력을 위해 자동차 리스트를 반환                                      |
+|                           | public Cars conductRound()                                   | 매 라운드를 진행                                               |
+|                           | public List<Car> getWinningCars()                            | 우승자를 선정해 우승자 리스트를 반환                                    |
+|                           | public Integer getMaxStep()                                  | step의 최댓값을 반환                                           |
+| model.domain.WinningCars  | private final List<Car> winningCars                          | 우승자 리스트                                                 |
+|                           | public static WinningCars winningCarsFrom(Cars cars)         | 우승자 리스트를 생성하는 정적 팩토리 메서드                                |
+|                           | public String getWinners()                                   | 출력을 위해 우승자 리스트를 문자열로 변환 후 반환                            |
+| model.InputParser         | private static InputParser inputParserObj                    | 싱글톤 패턴 구현을 위한 객체 참조값을 저장하는 변수                           |
+|                           | private String input                                         | 사용자 입력값 저장하는 변수                                         |
+|                           | public static InputParser carNamesInputParserFrom(String input) | 자동차 이름 입력값을 저장하는 정적 팩토리 메서드                             |
+|                           | public static InputParser roundInputParserFrom(String input) | 시도할 횟수 입력값을 저장하는 정적 팩토리 메서드                             |
+|                           | private static InputParser getInputParser(String input)      | InputParser 객체 생성 및 반환                                  |
+|                           | public List<String> getSplitCarNames()                       | 자동차 이름 입력값을 쉼표로 분리해 리스트로 반환                             |
+|                           | public Integer getRound()                                    | 시도할 횟수 입력값을 양수로 변환 후 반환                                 |
+| service.RaceService       | public Cars generateCars(String carNames)                    | 자동차 이름 입력값을 받아 자동차 리스트를 생성 및 반환                         |
+|                           | public Integer generateRound(String round)                   | 시도할 횟수 입력값을 받아 양수로 변환 후 반환                              |
+|                           | public Cars runRace(Cars cars)                               | 매 라운드 경주를 진행 후 결과를 반환                                   |
+|                           | public WinningCars decideWinners(Cars cars)                  | 우승자를 선정 후 결과를 반환                                        |
+| util.Converter            | public static Integer convertStringToNumber(String input)    | 문자를 숫자로 변환                                              |
+| util.Validator            | public static void validateNullOrBlank(String input)         | 입력값이 null 또는 공백인지 검증                                    |
+|                           | public static void validateCarNameLength(String CarName)     | 자동차 이름의 길이 검증                                           |
+|                           | public static void validateUniqueCarName(List<String> carNames) | 자동차 이름의 중복 검증                                           |
+|                           | public static void validateNumber(String input)              | 시도할 횟수 입력값의 형식 검증                                       |
+|                           | public static void validateExceedMax(String input)           | 시도할 횟수 입력값의 최댓값 초과 여부 검증                                |
+| view.InputView            | public static String readUserInput()                         | 사용자로부터 값을 입력 받음                                         |
+| view.OutputView           | public static void printCarNamesRequest()                    | 자동차 이름을 입력해달라는 메시지 출력                                   |
+|                           | public static void printRoundRequest()                       | 시도할 횟수를 입력해달라는 메시지 출력                                   |
+|                           | public static void printMessageBeforeRace()                  | 실행 결과 메시지 출력                                            |
+|                           | public static void printRace(Cars cars)                      | 경주 진행 결과 출력                                             |
+|                           | public static void printWinners(WinningCars winningCars)     | 우승자 출력                                                  |
+| constant.Constant         | DELIMITER, RESULT_DELIMITER 등                                | 로직에 필요한 여러 상수                                           |
+| constant.ErrorMessage     | INVALID_INPUT_ERROR, CAR_NAME_LENGTH_ERROR 등                 | 에러 메시지 상수                                               |
+|                           | public String getErrorMessage()                              | 에러 메시지를 반환                                              |
