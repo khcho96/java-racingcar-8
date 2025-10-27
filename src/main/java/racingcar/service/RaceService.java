@@ -9,7 +9,7 @@ public class RaceService {
     public Cars generateCars(String carNames) {
         InputParser inputParser = InputParser.carNamesInputParserFrom(carNames);
         List<String> splitCarNames = inputParser.getSplitCarNames();
-        return Cars.CarsFrom(splitCarNames);
+        return Cars.carsFrom(splitCarNames);
     }
 
     public Integer generateRound(String round) {

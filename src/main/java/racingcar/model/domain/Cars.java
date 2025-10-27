@@ -11,7 +11,7 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public static Cars CarsFrom(List<String> carNames) {
+    public static Cars carsFrom(List<String> carNames) {
         Validator.validateUniqueCarName(carNames);
         List<Car> cars = carNames.stream()
                 .map(Car::new)

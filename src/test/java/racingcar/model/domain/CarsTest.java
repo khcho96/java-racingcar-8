@@ -17,7 +17,7 @@ public class CarsTest {
         List<String> carNames = List.of("a", "b", "a");
 
         // when then
-        Assertions.assertThatThrownBy(() -> Cars.CarsFrom(carNames))
+        Assertions.assertThatThrownBy(() -> Cars.carsFrom(carNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(CAR_NAME_UNIQUE_ERROR.getErrorMessage());
     }
@@ -29,7 +29,7 @@ public class CarsTest {
         List<String> carNames = List.of("a", "b", "c");
 
         // when
-        Cars cars = Cars.CarsFrom(carNames);
+        Cars cars = Cars.carsFrom(carNames);
 
         // then
         assertThat(cars).isInstanceOf(Cars.class);
