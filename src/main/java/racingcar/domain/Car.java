@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 import racingcar.constant.ErrorMessage;
+import racingcar.constant.Threshold;
 import racingcar.domain.vo.Step;
 
 public class Car {
@@ -34,8 +35,17 @@ public class Car {
         return Objects.equals(name, car.name) && Objects.equals(step, car.step);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, step);
+    public void race(int number) {
+        if (Threshold.from(number).equals(Threshold.GO)) {
+            step.increaseStep();
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStep() {
+        return step.getStep();
     }
 }

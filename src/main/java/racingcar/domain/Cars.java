@@ -1,7 +1,9 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import racingcar.constant.ErrorMessage;
 
 public class Cars {
@@ -28,5 +30,23 @@ public class Cars {
         if (cars.contains(car)) {
             throw new IllegalArgumentException(ErrorMessage.NAME_DUPLICATION_ERROR.getErrorMessage());
         }
+    }
+
+    public void raceRound(List<Integer> numbers) {
+        for (Car car : cars) {
+            car.race(numbers.getFirst());
+        }
+    }
+
+    public int getCount() {
+        return cars.size();
+    }
+
+    public Map<String, Integer> getRoundResult() {
+        Map<String, Integer> result = new LinkedHashMap<>();
+        for (Car car : cars) {
+            result.put(car.getName(), car.getStep());
+        }
+        return Map.copyOf(result);
     }
 }

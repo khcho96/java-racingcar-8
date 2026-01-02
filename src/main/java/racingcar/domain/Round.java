@@ -21,4 +21,12 @@ public class Round {
             throw new IllegalArgumentException(ErrorMessage.ROUND_ERROR.getErrorMessage());
         }
     }
+
+    public boolean gameOver() {
+        return maxRound == currentRound;
+    }
+
+    public void raceRound() {
+        currentRound++;
+    }
 }
