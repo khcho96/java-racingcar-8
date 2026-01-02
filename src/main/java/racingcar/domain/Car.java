@@ -32,7 +32,12 @@ public class Car {
             return false;
         }
         Car car = (Car) object;
-        return Objects.equals(name, car.name) && Objects.equals(step, car.step);
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 
     public void race(int number) {

@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import racingcar.constant.ErrorMessage;
+import racingcar.domain.dto.Winners;
 
 public class Cars {
 
@@ -34,7 +35,7 @@ public class Cars {
 
     public void raceRound(List<Integer> numbers) {
         for (Car car : cars) {
-            car.race(numbers.getFirst());
+            car.race(numbers.removeFirst());
         }
     }
 
@@ -47,7 +48,7 @@ public class Cars {
         for (Car car : cars) {
             result.put(car.getName(), car.getStep());
         }
-        return Map.copyOf(result);
+        return result;
     }
 
     public Winners getWinners() {
