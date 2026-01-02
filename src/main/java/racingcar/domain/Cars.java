@@ -49,4 +49,28 @@ public class Cars {
         }
         return Map.copyOf(result);
     }
+
+    public Winners getWinners() {
+        List<String> winners = new ArrayList<>();
+        
+        decideWinners(winners);
+        
+        return Winners.from(winners);
+    }
+
+    private void decideWinners(List<String> winners) {
+        int maxStep = 0;
+        for (Car car : cars) {
+            if (car.getStep() > maxStep) {
+                winners.clear();
+                winners.add(car.getName());
+                maxStep = car.getStep();
+                continue;
+            }
+
+            if (car.getStep() == maxStep) {
+                winners.add(car.getName());
+            }
+        }
+    }
 }

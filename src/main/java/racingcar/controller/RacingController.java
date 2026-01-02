@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import racingcar.domain.Winners;
 import racingcar.domain.dto.RoundResult;
 import racingcar.service.RacingService;
 import racingcar.util.InputParser;
@@ -30,6 +31,9 @@ public class RacingController {
 
             OutputView.printRound(roundResult);
         }
+
+        Winners winners = racingService.getWinners();
+        OutputView.printWinners(winners);
     }
 }
 

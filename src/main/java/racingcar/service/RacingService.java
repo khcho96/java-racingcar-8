@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
+import racingcar.domain.Winners;
 import racingcar.domain.dto.RoundResult;
 
 public class RacingService {
@@ -26,5 +27,9 @@ public class RacingService {
         racingGame.race(cars);
 
         return RoundResult.from(cars.getRoundResult());
+    }
+
+    public Winners getWinners() {
+        return cars.getWinners();
     }
 }
