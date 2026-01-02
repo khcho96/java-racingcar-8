@@ -17,8 +17,8 @@ public class RaceController {
     public void run() {
         Cars cars = getCars();
         Integer round = getRound(cars);
-        Cars finalCars = runRaceEveryRound(cars, round);
-        showWinners(finalCars);
+        runRaceEveryRound(cars, round);
+        showWinners(cars);
     }
 
     private Cars getCars() {
@@ -33,16 +33,12 @@ public class RaceController {
         return service.generateRound(round);
     }
 
-    private Cars runRaceEveryRound(Cars cars, Integer round) {
+    private void runRaceEveryRound(Cars cars, Integer round) {
         OutputView.printMessageBeforeRace();
-        Cars prevRoundCars = cars;
-        Cars nextRoundCars = cars;
         for (int i = 0; i < round; i++) {
-            nextRoundCars = service.runRace(prevRoundCars);
-            OutputView.printRace(nextRoundCars);
-            prevRoundCars = nextRoundCars;
+            service.runRace(cars);
+            OutputView.printRace(cars);
         }
-        return nextRoundCars;
     }
 
     private void showWinners(Cars cars) {
