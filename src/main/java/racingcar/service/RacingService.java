@@ -3,7 +3,7 @@ package racingcar.service;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
-import racingcar.domain.Winners;
+import racingcar.domain.dto.Winners;
 import racingcar.domain.dto.RoundResult;
 
 public class RacingService {

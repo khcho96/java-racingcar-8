@@ -1,7 +1,7 @@
 package racingcar.view;
 
 import java.util.Map.Entry;
-import racingcar.domain.Winners;
+import racingcar.domain.dto.Winners;
 import racingcar.domain.dto.RoundResult;
 
 public class OutputView {
@@ -24,9 +24,5 @@ public class OutputView {
 
     public static void printWinners(Winners winners) {
         System.out.println("최종 우승자 : " + String.join(", ", winners.winners()));
-    }
-
-    public static void printErrorMessage(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
     }
 }
