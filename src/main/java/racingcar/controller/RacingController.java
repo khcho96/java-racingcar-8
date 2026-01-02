@@ -20,8 +20,7 @@ public class RacingController {
 
         String readRound = InputView.readRound();
         int round = InputParser.parseRound(readRound);
-        //racingService.registerRound(round);
+        racingService.registerRound(round);
     }
-
 }
 
