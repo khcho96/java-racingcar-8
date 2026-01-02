@@ -17,6 +17,10 @@ public class RacingController {
         String readCarNames = InputView.readCarNames();
         List<String> carNames = InputParser.parseCarNames(readCarNames);
         racingService.registerCar(carNames);
+
+        String readRound = InputView.readRound();
+        int round = InputParser.parseRound(readRound);
+        //racingService.registerRound(round);
     }
 
 }
