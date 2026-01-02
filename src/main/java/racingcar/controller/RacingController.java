@@ -16,7 +16,7 @@ public class RacingController {
     public void run() {
         String readCarNames = InputView.readCarNames();
         List<String> carNames = InputParser.parseCarNames(readCarNames);
-
+        racingService.registerCar(carNames);
     }
 
 }

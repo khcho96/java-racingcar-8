@@ -1,0 +1,41 @@
+package racingcar.domain;
+
+import java.util.Objects;
+import racingcar.constant.ErrorMessage;
+import racingcar.domain.vo.Step;
+
+public class Car {
+
+    private final String name;
+    private final Step step;
+
+    public Car(String name, Step step) {
+        this.name = name;
+        this.step = step;
+    }
+
+    public static Car from(String carName) {
+        validateNameLength(carName);
+        return new Car(carName, Step.newInstance());
+    }
+
+    private static void validateNameLength(String carName) {
+        if (carName.length() > 5) {
+            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH_ERROR.getErrorMessage());
+        }
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Car car = (Car) object;
+        return Objects.equals(name, car.name) && Objects.equals(step, car.step);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, step);
+    }
+}
